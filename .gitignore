@@ -1,6 +1,9 @@
 a.out
 a.out.dSYM
 .vscode
+<<<<<<< HEAD
 .vscode/settings.json
+=======
+>>>>>>> d06818604b3e8a7d8d853f5c01a4066a9675acc7
 *.d
 *.o

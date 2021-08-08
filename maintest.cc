@@ -35,6 +35,7 @@
 // }
 
 int main() {
+<<<<<<< HEAD
     // std::vector<std::vector<Posn>> grid;
     // for(int i = 0; i < 18; ++i) {
     //     std::vector<Posn> row;
@@ -51,6 +52,24 @@ int main() {
     // Sblock sblock;
     // Tblock tblock;
     // Zblock zblock;
+=======
+    std::vector<std::vector<Posn>> grid;
+    for(int i = 0; i < 18; ++i) {
+        std::vector<Posn> row;
+        for(int j = 0; j < 11; ++j) {
+            row.emplace_back(i, j);
+        }
+        grid.emplace_back(row);
+    }
+    
+    Iblock iblock;
+    Jblock jblock;
+    Lblock lblock;
+    Oblock oblock;
+    Sblock sblock;
+    Tblock tblock;
+    Zblock zblock;
+>>>>>>> d06818604b3e8a7d8d853f5c01a4066a9675acc7
 
     // display(grid, iblock);
     // display(grid, jblock);
@@ -64,7 +83,10 @@ int main() {
 
     Board b;
     std::cout << b;
+<<<<<<< HEAD
    //std::cout << c.getCId() << std::endl;
    //std::cout << c.getCType() << std::endl;
+=======
+>>>>>>> d06818604b3e8a7d8d853f5c01a4066a9675acc7
     return 0;
 }
