@@ -7,7 +7,6 @@ class Posn {
     int y = 0;
     public:
         Posn(int sx, int sy);
-        void setPosn(int sx, int sy);
         int getX() const;
         int getY() const;
 };

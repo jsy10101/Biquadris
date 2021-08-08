@@ -5,11 +5,6 @@
 
 Posn::Posn(int sx, int sy) : x{sx}, y{sy} {}
 
-void Posn::setPosn(int sx, int sy) {
-    x = sx;
-    y = sy;
-}
-
 int Posn::getX() const {
     return x;
 }
