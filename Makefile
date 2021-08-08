@@ -4,7 +4,7 @@ EXEC = a.out
 # ######################################
 # remove ` maintest.o ` later
 # ######################################
-OBJECTS = block.o iblock.o jblock.o lblock.o oblock.o sblock.o tblock.o zblock.o posn.o maintest.o
+OBJECTS = block.o iblock.o jblock.o lblock.o oblock.o sblock.o tblock.o zblock.o posn.o maintest.o board.o cell.o
 DEPENDS = ${OBJECTS:.o=.d}
 SRC = ${OBJECTS:.o=.cc}
 

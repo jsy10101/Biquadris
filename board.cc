@@ -1,11 +1,12 @@
 #include "board.h"
 
-Board::Board() : 
+Board::Board() :
     row{18}, col{11}, blockCounter{0} {
     for(int i = 0; i < row; ++i) {
         std::vector<Cell> boardRow;
         for(int j = 0; j < col; ++j) {
-            boardRow.emplace_back(Cell());
+            Cell c;
+            boardRow.emplace_back(c);
         }
         board.emplace_back(boardRow);
     }
@@ -22,7 +23,7 @@ bool Board::addBlock(Block &block){
 std::ostream& operator<<(std::ostream& out, const Board& b) {
     for(int i = 0; i < b.row; ++i) {
         for(int j = 0; j < b.col; ++j) {
-                out << *(b.board.at(i).at(j));
+                out << b.board.at(i).at(j);
             }
         out << std::endl;
     } 
