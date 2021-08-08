@@ -1,0 +1,62 @@
+#include <iostream>
+#include <vector>
+#include <iomanip>
+#include "posn.h"
+#include "iblock.h"
+#include "jblock.h"
+#include "lblock.h"
+#include "oblock.h"
+#include "sblock.h"
+#include "tblock.h"
+#include "zblock.h"
+
+template <typename T>
+void display(std::vector<std::vector<Posn>>& grid, T b) {
+    for(int i = 0; i < 18; ++i) {
+        for(int j = 0; j < 11; ++j) {
+            bool found = false;
+            for(int k = 0; k < b.getBlock().size(); ++k) {
+                if(b.getBlock().at(k) == grid[i].at(j)) {
+                    found = true;
+                    break;
+                }
+            }
+            if(found) {
+                std::cout << std::setw(4) << b.getType() << std::setw(3) << " ";
+            } else {
+                std::cout << grid[i].at(j) <<  " ";
+            }
+        }
+        std::cout << std::endl;
+    } 
+    std::cout << "grid completed \n\n";
+    
+}
+
+int main() {
+    std::vector<std::vector<Posn>> grid;
+    for(int i = 0; i < 18; ++i) {
+        std::vector<Posn> row;
+        for(int j = 0; j < 11; ++j) {
+            row.emplace_back(i, j);
+        }
+        grid.emplace_back(row);
+    }
+
+    Iblock iblock;
+    Jblock jblock;
+    Lblock lblock;
+    Oblock oblock;
+    Sblock sblock;
+    Tblock tblock;
+    Zblock zblock;
+
+    display(grid, iblock);
+    display(grid, jblock);
+    display(grid, lblock);
+    display(grid, oblock);
+    display(grid, sblock);
+    display(grid, tblock);
+    display(grid, zblock);
+    return 0;
+}
