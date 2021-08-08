@@ -9,29 +9,30 @@
 #include "sblock.h"
 #include "tblock.h"
 #include "zblock.h"
+#include "board.h"
 
-template <typename T>
-void display(std::vector<std::vector<Posn>>& grid, T b) {
-    for(int i = 0; i < 18; ++i) {
-        for(int j = 0; j < 11; ++j) {
-            bool found = false;
-            for(int k = 0; k < b.getBlock().size(); ++k) {
-                if(b.getBlock().at(k) == grid[i].at(j)) {
-                    found = true;
-                    break;
-                }
-            }
-            if(found) {
-                std::cout << std::setw(4) << b.getType() << std::setw(3) << " ";
-            } else {
-                std::cout << grid[i].at(j) <<  " ";
-            }
-        }
-        std::cout << std::endl;
-    } 
-    std::cout << "grid completed \n\n";
+//template <typename T>
+// void display(std::vector<std::vector<Posn>>& grid, T b) {
+//     for(int i = 0; i < 18; ++i) {
+//         for(int j = 0; j < 11; ++j) {
+//             bool found = false;
+//             for(int k = 0; k < b.getBlock().size(); ++k) {
+//                 if(b.getBlock().at(k) == grid[i].at(j)) {
+//                     found = true;
+//                     break;
+//                 }
+//             }
+//             if(found) {
+//                 std::cout << std::setw(4) << b.getType() << std::setw(3) << " ";
+//             } else {
+//                 std::cout << grid[i].at(j) <<  " ";
+//             }
+//         }
+//         std::cout << std::endl;
+//     } 
+//     std::cout << "grid completed \n\n";
     
-}
+// }
 
 int main() {
     std::vector<std::vector<Posn>> grid;
@@ -42,7 +43,7 @@ int main() {
         }
         grid.emplace_back(row);
     }
-
+    
     Iblock iblock;
     Jblock jblock;
     Lblock lblock;
@@ -51,12 +52,17 @@ int main() {
     Tblock tblock;
     Zblock zblock;
 
-    display(grid, iblock);
-    display(grid, jblock);
-    display(grid, lblock);
-    display(grid, oblock);
-    display(grid, sblock);
-    display(grid, tblock);
-    display(grid, zblock);
+    // display(grid, iblock);
+    // display(grid, jblock);
+    // display(grid, lblock);
+    // display(grid, oblock);
+    // display(grid, sblock);
+    // display(grid, tblock);
+    // display(grid, zblock);
+    
+    // std::cout << std::endl;
+
+    Board b;
+    std::cout << b;
     return 0;
 }

@@ -5,6 +5,7 @@
 
 class Block {
     char b_type;
+    int block_counter;
     std::vector<Posn> block; 
     public:
         Block(char b_type, std::vector<Posn> block);
