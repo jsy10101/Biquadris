@@ -3,10 +3,10 @@
 #include <iostream>
 
 class Posn {
-    int x = 0;
     int y = 0;
+    int x = 0;
     public:
-        Posn(int sx, int sy);
+        Posn(int sy, int sx);
         int getX() const;
         int getY() const;
 };

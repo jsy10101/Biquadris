@@ -3,7 +3,7 @@
 #include <iomanip>
 #include <sstream>
 
-Posn::Posn(int sx, int sy) : x{sx}, y{sy} {}
+Posn::Posn(int sy, int sx) : y{sy}, x{sx} {}
 
 int Posn::getX() const {
     return x;
@@ -16,7 +16,7 @@ int Posn::getY() const {
 std::ostream& operator<<(std::ostream& out, const Posn& p) {
     out << std::setw(6);
     std::ostringstream os;
-    os << "(" << p.getX() << "," << p.getY() << ")";  
+    os << "(" << p.getY() << "," << p.getX() << ")";  
     out << std::setw(6) << os.str();
     return out;
 }

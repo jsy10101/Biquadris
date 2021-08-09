@@ -4,11 +4,7 @@ EXEC = a.out
 # ######################################
 # remove ` maintest.o ` later
 # ######################################
-<<<<<<< HEAD
-OBJECTS = block.o iblock.o jblock.o lblock.o oblock.o sblock.o tblock.o zblock.o posn.o maintest.o board.o cell.o
-=======
-OBJECTS = block.o iblock.o jblock.o lblock.o oblock.o sblock.o tblock.o zblock.o posn.o maintest.o
->>>>>>> d06818604b3e8a7d8d853f5c01a4066a9675acc7
+OBJECTS = block.o iblock.o jblock.o lblock.o oblock.o sblock.o tblock.o zblock.o posn.o board.o cell.o level.o levZer.o game.o gameController.o view.o main.o
 DEPENDS = ${OBJECTS:.o=.d}
 SRC = ${OBJECTS:.o=.cc}
 

@@ -4,7 +4,7 @@
 
 class Oblock : public Block {
     public:
-        Oblock();
+        Oblock(int id);
 };
 
 #endif

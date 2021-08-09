@@ -18,6 +18,6 @@ void Cell::setCell(int id, char type) {
 }
 
 std::ostream& operator<<(std::ostream& out, const Cell& c) {
-    out << c.cType;
+    out << c.cType << " ";
     return out;
 }

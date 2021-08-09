@@ -1,11 +1,15 @@
 #include "block.h"
 
-Block::Block(char b_type, std::vector<Posn> block) :
-    b_type{b_type}, block{block}
+Block::Block(char bType, int id, std::vector<Posn> block) :
+    bType{bType}, bId{id}, block{block}
     {}
 
 char Block::getType() const {
-    return b_type;
+    return bType;
+}
+
+int Block::getBId() const {
+    return bId;
 }
 
 std::vector<Posn>& Block::getBlock() {

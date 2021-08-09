@@ -4,18 +4,17 @@
 #include "cell.h"
 #include "block.h"
 #include <vector>
+#include <memory>
 
 class Board {
     const int row;
     const int col;
-    int blockCounter;
-
+    //int blockCounter;
     std::vector<std::vector<Cell>> board;
-    
     public:
         Board();
         std::vector<std::vector<Cell>>& getBoard();
-        bool addBlock(Block& block);
+        void updateBoard(std::unique_ptr<Block>& blockPtr);
         friend std::ostream& operator<<(std::ostream& out, const Board& b);
 };
 
