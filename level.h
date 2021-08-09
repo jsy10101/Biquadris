@@ -1,13 +1,26 @@
 #ifndef __LEVEL_H__
 #define __LEVEL_H__
 
-class Level {
-    int currLevel;
-    public:
-        Level(int currLevel);
-        int getCurLevl() const;
-        virtual char blockCreate() = 0;
-        virtual ~Level();
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+using namespace std;
+
+class Level{
+protected:
+    string file;
+    int pos = 0;
+    vector<char> type;
+public:
+    int current_level;
+    virtual char blockCreate() = 0;
+    virtual void updateCount(int c);
+    virtual int getCount();
+    Level(int current_level, string file = "");
+    virtual ~Level();
+    void read_file();
+   
 };
 
 
