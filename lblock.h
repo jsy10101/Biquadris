@@ -4,7 +4,7 @@
 
 class Lblock : public Block {
     public:
-        Lblock();
+        Lblock(int id);
 };
 
 #endif

@@ -4,12 +4,14 @@
 #include <vector>
 
 class Block {
-    char b_type;
-    int block_counter;
+    char bType;
+    int bId;
+    //int blockCounter;
     std::vector<Posn> block; 
     public:
-        Block(char b_type, std::vector<Posn> block);
+        Block(char bType, int bId, std::vector<Posn> block);
         char getType() const;
+        int getBId() const;
         std::vector<Posn>& getBlock();
         bool isRotatable(std::vector<std::vector<Posn>>& grid, int x);
         void shift(int x);

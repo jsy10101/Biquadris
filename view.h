@@ -1,10 +1,13 @@
 #ifndef __VIEW_H__
 #define __VIEW_H__
 
-class Board;
+class Game;
 class View {
+    const int row;
+    const int col;
     public:
-        View(Board& b1, Board& b2);
+        View();      
+        void textDisplay(Game& player1, Game& player2);
 };
 
 #endif
