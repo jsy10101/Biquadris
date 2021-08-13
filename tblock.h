@@ -4,7 +4,7 @@
 
 class Tblock : public Block {
     public:
-        Tblock(int id);
+        Tblock(int id, int level);
 };
 
 #endif

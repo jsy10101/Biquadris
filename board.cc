@@ -13,6 +13,14 @@ Board::Board() :
     }
 }
 
+int Board::getRow() const {
+    return row;
+}
+
+int Board::getCol() const {
+    return col;
+}
+
 std::vector<std::vector<Cell>>& Board::getBoard() {
     return board;
 }
@@ -24,7 +32,9 @@ void Board::updateBoard(std::unique_ptr<Block>& blockPtr) {
                 .getCType() == '.') {
            board.at(blockPtr->getBlock().at(i).getY())
                 .at(blockPtr->getBlock().at(i).getX())
-                .setCell(blockPtr->getBId(), blockPtr->getType()); 
+                .setCell( blockPtr->getBId(), 
+                          blockPtr->getBLevel(),
+                          blockPtr->getBType() ); 
         }
     }
 }

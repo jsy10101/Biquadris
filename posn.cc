@@ -13,6 +13,11 @@ int Posn::getY() const {
     return y;
 }
 
+void Posn::addPosn(int y, int x) {
+    this->y += y;
+    this->x += x;
+}
+
 std::ostream& operator<<(std::ostream& out, const Posn& p) {
     out << std::setw(6);
     std::ostringstream os;

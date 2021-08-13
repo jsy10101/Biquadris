@@ -8,6 +8,9 @@
 class GameController {
     Game player1;
     Game player2;
+    Game *currPlayer;
+    int currPlayerId;
+    void switchPlayer();
     View v;
     public:
         GameController(int lvl, std::string iF1, std::string iF2);

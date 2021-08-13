@@ -9,6 +9,7 @@ class Posn {
         Posn(int sy, int sx);
         int getX() const;
         int getY() const;
+        void addPosn(int y, int x);
 };
 
 std::ostream& operator<<(std::ostream& out, const Posn& p);

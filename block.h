@@ -6,17 +6,16 @@
 class Block {
     char bType;
     int bId;
-    //int blockCounter;
     std::vector<Posn> block; 
+    int bLevelGen;
     public:
-        Block(char bType, int bId, std::vector<Posn> block);
-        char getType() const;
+        Block(char bType, int bId, std::vector<Posn> block, int level);
+        char getBType() const;
         int getBId() const;
+        int getBLevel() const;
         std::vector<Posn>& getBlock();
-        bool isRotatable(std::vector<std::vector<Posn>>& grid, int x);
-        void shift(int x);
-        void rotate_clock(int n);
-        void rotate_anti(int n);
+        void updateBlock(int y, int x);
+        void rotateBlock(int times);
 };
 
 #endif

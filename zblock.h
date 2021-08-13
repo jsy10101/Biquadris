@@ -4,7 +4,7 @@
 
 class Zblock : public Block {
     public:
-        Zblock(int id);
+        Zblock(int id, int level);
 };
 
 #endif
