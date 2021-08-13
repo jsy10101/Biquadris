@@ -19,15 +19,15 @@ int main(int args, char *argv[]) {
             std::istringstream ss1{temp};
             ss1 >> seedVal;
             srand(seedVal);
-        } else if(cmd == "-scriptfile1"){
+        } else if(cmd == "-scriptfile1") {
             i++;
             std::string file{argv[i]};
             inputFile1 = file;
-        } else if(cmd == "-scriptfile2"){
+        } else if(cmd == "-scriptfile2") {
             i++;
             std::string file{argv[i]};
             inputFile2 = file;
-        } else if(cmd == "-startlevel"){
+        } else if(cmd == "-startlevel") {
             ++i;
             std::string levelInput{argv[i]};
             std::istringstream ss1{levelInput};
