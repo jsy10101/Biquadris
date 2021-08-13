@@ -1,7 +1,7 @@
 #include "game.h"
 
 Game::Game(std::string file, int level) :
-    id{-1}, b{Board()}, file{file},
+    level{level}, id{-1}, b{Board()}, file{file},
     noRandomFile{""}, currBlock{nullptr}, nextBlock{nullptr}, 
     levelPtr{nullptr} {
         if( level <= 0 ) {

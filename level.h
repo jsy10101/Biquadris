@@ -9,7 +9,7 @@ class Level {
     std::string file;
     public:
         Level(int currLevel, std::string file);
-        static int pos;
+        int pos;
         std::vector<char> blockTypeList;
         int getCurLevl() const;
         virtual char blockCreate() = 0;

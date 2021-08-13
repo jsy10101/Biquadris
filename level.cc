@@ -3,7 +3,7 @@
 #include <iostream>
 
 Level::Level(int currLevel, std::string file) : 
-    currLevel{currLevel} {
+    currLevel{currLevel}, pos{0} {
         while(true) {
             if(file != "") {
                 std::ifstream infile{file};
@@ -27,8 +27,6 @@ Level::Level(int currLevel, std::string file) :
             }
         }
     }
-
-int Level::pos = 0;
 
 Level::~Level() {}
 
