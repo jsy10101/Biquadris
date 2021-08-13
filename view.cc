@@ -11,8 +11,8 @@ void View::textDisplay(Game& player1, Game& player2) {
     std::cout << "L e v e l:" << std::setw(7) << player1.getLevel() << std::setw(20)
         << "L e v e l:" << std::setw(7) << player2.getLevel() << std::endl;
 
-    std::cout << "S c o r e:" << std::setw(7) << player1.getScore() << std::setw(20)
-        << "S c o r e:" << std::setw(7) << player2.getScore() << std::endl;
+    std::cout << "S c o r e:" << std::setw(7) << player1.getPlayerScore() << std::setw(20)
+        << "S c o r e:" << std::setw(7) << player2.getPlayerScore() << std::endl;
 
     for(int i = 0; i < 11; ++i) {
         std::cout << "- ";
@@ -51,7 +51,7 @@ void View::textDisplay(Game& player1, Game& player2) {
         for(int j = 0; j < player1.getNextBlock()->getBlock().size(); ++j) {
             if( k1 < player1.getNextBlock()->getBlock().size() && 
                 player1.getNextBlock()->getBlock().at(k1) == Posn{i + 2, j} ) {
-                std::cout << player1.getNextBlock()->getType() << " ";
+                std::cout << player1.getNextBlock()->getBType() << " ";
                 ++k1;
             } else {
                 std::cout << ". ";
@@ -61,7 +61,7 @@ void View::textDisplay(Game& player1, Game& player2) {
         for(int j = 0; j < player2.getNextBlock()->getBlock().size(); ++j) {
             if( k2 < player2.getNextBlock()->getBlock().size() && 
                 player2.getNextBlock()->getBlock().at(k2) == Posn{i + 2, j} ) {
-                std::cout << player2.getNextBlock()->getType() << " ";
+                std::cout << player2.getNextBlock()->getBType() << " ";
                 ++k2;
             } else {
                 std::cout << ". ";

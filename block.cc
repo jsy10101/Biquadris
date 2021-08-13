@@ -1,10 +1,10 @@
 #include "block.h"
 
-Block::Block(char bType, int id, std::vector<Posn> block) :
-    bType{bType}, bId{id}, block{block}
+Block::Block(char bType, int id, std::vector<Posn> block, int level) :
+    bType{bType}, bId{id}, block{block}, bLevelGen{level}
     {}
 
-char Block::getType() const {
+char Block::getBType() const {
     return bType;
 }
 
@@ -16,28 +16,109 @@ std::vector<Posn>& Block::getBlock() {
     return block;
 }
 
-//bool Block::isRotatable(std::vector<std::vector<Posn>>& grid, int x) {
-//}
+int Block::getBLevel() const {
+    return bLevelGen;
+}
 
-// I block
-// {{3, 0}, {3, 1}, {3, 2}, {3, 3}}
-// clockwise rotation
-// {{3, 0}, {2, 0}, {1, 0}, {0, 0}}
+void Block::updateBlock(int y, int x) {
+    for(int i = 0; i < block.size(); ++i) {
+        block.at(i).addPosn(y, x);
+    }
+}
 
-// J block
-// {{2, 0}, {3, 0}, {3, 1}, {3, 2}}
-// clockwise rotation
-// {{3, 0}, {2, 0}, {1, 0}, {0, 0}}
+void Block::rotateBlock(int times) {
+    times = times % 4; // removing extra rotations
+    times += 4; // converting negative to positive
+    times = times % 4; //removing extra rotations again
 
+    while(times--) {
 
-// Algorithm for checking rotation
-// x:
-//      pos -> clockwise
-//      neg -> counter clockwise
+        std::vector<Posn> tempBlock;
+        for(auto b : block) {
+            if (b.getY() == 0 && b.getX() == 0) {
+                Posn p(3,0);
+                tempBlock.emplace_back(p);
+            }
+            else if (b.getY() == 0 && b.getX() == 1) {
+                Posn p(2,0);
+                tempBlock.emplace_back(p);
+            }
+            else if (b.getY() == 0 && b.getX() == 2) {
+                Posn p(1,0);
+                tempBlock.emplace_back(p);
+            }
+            else if (b.getY() == 0 && b.getX() == 3) {
+                Posn p(0,0);
+                tempBlock.emplace_back(p);
+            }
+            else if (b.getY() == 1 && b.getX() == 0) {
+                Posn p(3,1);
+                tempBlock.emplace_back(p);
+            }
+            else if (b.getY() == 1 && b.getX() == 1) {
+                Posn p(2,1);
+                tempBlock.emplace_back(p);
+            }
+            else if (b.getY() == 1 && b.getX() == 2) {
+                Posn p(1,1);
+                tempBlock.emplace_back(p);
+            }
+            else if (b.getY() == 1 && b.getX() == 3) {
+                Posn p(0,1);
+                tempBlock.emplace_back(p);
+            }
+            else if (b.getY() == 2 && b.getX() == 0) {
+                Posn p(3,2);
+                tempBlock.emplace_back(p);
+            }
+            else if (b.getY() == 2 && b.getX() == 1) {
+                Posn p(2,2);
+                tempBlock.emplace_back(p);
+            }
+            else if (b.getY() == 2 && b.getX() == 2) {
+                Posn p(1,2);
+                tempBlock.emplace_back(p);
+            }
+            else if (b.getY() == 2 && b.getX() == 3) {
+                Posn p(0,2);
+                tempBlock.emplace_back(p);
+            }
+            else if (b.getY() == 3 && b.getX() == 0) {
+                Posn p(3,3);
+                tempBlock.emplace_back(p);
+            }
+            else if (b.getY() == 3 && b.getX() == 1) {
+                Posn p(2,3);
+                tempBlock.emplace_back(p);
+            }
+            else if (b.getY() == 3 && b.getX() == 2) {
+                Posn p(1,3);
+                tempBlock.emplace_back(p);
+            }
+            else if (b.getY() == 3 && b.getX() == 3) {
+                Posn p(0,3);
+                tempBlock.emplace_back(p);
+            }
+        }
 
-// if x > 0
-//      if block.right + 
-// if block.left < grid.left
-//      return false
-// if block.right > grid.right
-//      return false
+        int maxY = 0, minX = 3;
+        for(auto b : tempBlock) {
+            if (b.getX() < minX) {
+                minX = b.getX();
+            }
+            if (b.getY() > maxY) {
+                maxY = b.getY();
+            }
+        }
+        maxY = 3 - maxY;
+        minX = -minX;
+        for(auto b: tempBlock) {
+            b.addPosn(maxY, minX);
+        }
+        block.clear();
+        for(auto b : tempBlock) {
+            block.emplace_back(b);
+        }
+    }
+}
+

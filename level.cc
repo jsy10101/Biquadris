@@ -9,6 +9,3 @@ Level::~Level() {}
 int Level::getCurLevl() const {
     return currLevel;
 }
-
-
-

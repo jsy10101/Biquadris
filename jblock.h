@@ -4,7 +4,7 @@
 
 class Jblock : public Block {
     public:
-        Jblock(int id);
+        Jblock(int id, int level);
 };
 
 #endif

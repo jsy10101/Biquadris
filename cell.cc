@@ -1,7 +1,7 @@
 #include "cell.h"
 
 Cell::Cell() :
-    cId{-1}, cType{'.'} 
+    cId{-1}, cLevelGen{-1}, cType{'.'}   
     {}
 
 int Cell::getCId() const {
@@ -12,9 +12,20 @@ char Cell::getCType() const {
     return cType;
 }
 
-void Cell::setCell(int id, char type) {
+int Cell::getCLevel() const {
+    return cLevelGen;
+}
+
+void Cell::setCell(int id, int level, char type) {
     cId = id;
+    cLevelGen = level;
     cType = type;
+}
+
+void Cell::setDefault() {
+    cId = -1;
+    cLevelGen = -1;
+    cType = '.';
 }
 
 std::ostream& operator<<(std::ostream& out, const Cell& c) {
