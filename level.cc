@@ -9,7 +9,6 @@ Level::Level(int currLevel, std::string file) :
                 std::ifstream infile{file};
                 if( file != "" && !infile.fail() ) {
                     this->file = file;
-                    std::cout << "updated (" << this->file << ")" << std::endl;
                     char blockType{' '};
                     while(true) {
                         if(infile >> blockType) {

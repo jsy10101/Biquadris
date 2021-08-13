@@ -23,7 +23,7 @@
 class Game {
     int level;
     int id;
-    bool isRandom;
+    bool isGameFinished;
     Board b;
     std::string file;
     std::string noRandomFile;
