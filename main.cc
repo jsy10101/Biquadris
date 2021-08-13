@@ -12,7 +12,7 @@ int main(int args, char *argv[]) {
         if(cmd == "-text"){
             //since in this mode we donot need the graphics
             graphicSwitch = false;
-        } else if(cmd == "-seed"){
+        } else if(cmd == "-seed") {
             int seedVal = 0;
             ++i;
             std::string temp{argv[i]};

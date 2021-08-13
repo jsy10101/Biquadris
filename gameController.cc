@@ -48,7 +48,6 @@ void GameController::startGame() {
             cmdCounter = 1;
             iStrStream.clear();
         }
-        // to be deleted later
         if(currPlayerId == 2) {
             std::cout << std::setw(27) << " "; 
         }
@@ -60,15 +59,15 @@ void GameController::startGame() {
             currPlayer->changeCurrBlock(cmd);
 
         } else if( partCmd.substr(0, 2) == "cl" ) {
-            std::cout << partCmd << std::endl;
+            std::cout << cmd << std::endl;
             currPlayer->rotateBlock(cmdCounter);
 
         } else if( partCmd.substr(0, 2) == "co" || partCmd == "cc" ) {
-            std::cout << partCmd << std::endl;
+            std::cout << cmd << std::endl;
             currPlayer->rotateBlock(-1 * cmdCounter);
 
         } else if( partCmd.substr(0, 2) == "dr" ) {
-            std::cout << partCmd << std::endl;
+            std::cout << cmd << std::endl;
             currPlayer->dropBlock(cmdCounter);
 
             #if DEBUG == 0
@@ -76,34 +75,41 @@ void GameController::startGame() {
             #endif
 
         } else if( partCmd.substr(0, 6) == "levelu" ) {
-            std::cout << partCmd << std::endl;
+            std::cout << cmd << std::endl;
+            currPlayer->changePlayerLevel(1, cmdCounter);
 
         } else if( partCmd.substr(0, 6) == "leveld" ) {
-            std::cout << partCmd << std::endl;
+            std::cout << cmd << std::endl;
+            currPlayer->changePlayerLevel(-1, cmdCounter);
 
         } else if( partCmd.substr(0, 2) == "ri" ) {
-            std::cout << partCmd << std::endl;
+            std::cout << cmd << std::endl;
             currPlayer->shiftBlock(0, 1, cmdCounter);
 
         } else if( partCmd.substr(0, 2) == "do" ) {
-            std::cout << partCmd << std::endl;
+            std::cout << cmd << std::endl;
             currPlayer->shiftBlock(1, 0, cmdCounter);
 
         } else if( partCmd.substr(0, 3) == "lef" ) {
-            std::cout << partCmd << std::endl;
+            std::cout << cmd << std::endl;
             currPlayer->shiftBlock(0, -1, cmdCounter);
 
         } else if( partCmd.substr(0, 1) == "n" ) {
-            std::cout << partCmd << std::endl;
+            std::string file;
+            std::cin >> file;
+            // add the partCmd into file by loading first token from buffer
+            // then add the second token from buffer by modifying file
+            currPlayer->setNoRandomFile(file);
 
         } else if( partCmd.substr(0, 2) == "ra" ) {
-            std::cout << partCmd << std::endl;
+            std::cout << cmd << std::endl;
+            currPlayer->setNoRandomFile("");
 
         } else if( partCmd.substr(0, 1) == "s") {
-            std::cout << partCmd << std::endl;
+            std::cout << cmd << std::endl;
 
         } else if( partCmd.substr(0, 2) == "re" ) {
-            std::cout << partCmd << std::endl;
+            std::cout << cmd << std::endl;
 
         } else {
             std::cout << "Wrong command" << std::endl;

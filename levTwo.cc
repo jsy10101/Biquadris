@@ -1,21 +1,39 @@
-#include "levZer.h"
+#include "levTwo.h"
 #include <fstream>
 
-LevZer::LevZer(std::string file) :
-    Level{0}, pos{0} {
-        std::ifstream infile{file};
-        char blockType{' '};
-        while(true) {
-            if(infile >> blockType) {
-                blockTypeList.emplace_back(blockType);
-            } else {
-                break;
-            }
-        }
-    }
+LevTwo::LevTwo() :
+    Level{2, ""}
+    {}
 
-char LevZer::blockCreate() {
-    pos = (pos == blockTypeList.size()) ? 0 : pos;
-    ++pos;
-    return blockTypeList[pos - 1];
+char LevTwo::blockCreate() {
+    int prob = rand() % 7;
+    char retval = ' ';
+    switch(prob) {
+        case 0: 
+            retval = 'S';
+            break;
+        case 1:
+            retval = 'Z';
+            break;
+        case 2:
+            retval = 'I';
+            break;
+        case 3:
+            retval = 'J';
+            break;
+        case 4:
+            retval = 'L';
+            break;
+        case 5:
+            retval = 'O';
+            break;
+        case 6:
+            retval = 'T';
+            break;
+        default:
+        // Would never get here
+        // one of the cases above will always be true since (any number % 7) < 7
+            break;
+    }
+    return retval;
 }
