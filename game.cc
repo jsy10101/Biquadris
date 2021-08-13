@@ -1,9 +1,16 @@
 #include "game.h"
 
-Game::Game(std::string file, int level) : 
+Game::Game(std::string file, int level) :
     level{level}, id{-1}, b{Board()}, file{file},
-    currBlock{nullptr}, nextBlock{nullptr}, 
+    noRandomFile{""}, currBlock{nullptr}, nextBlock{nullptr}, 
     levelPtr{nullptr} {
+        if( level <= 0 ) {
+            this->level = 0;
+        } else if( level >= 4 ) {
+            this->level = 4;
+        } else {
+            this->level = level;
+        }
         score = std::make_unique<Score>();
         setLevel(levelPtr);
         genBlock(currBlock, false);
@@ -24,6 +31,11 @@ int Game::getHighScore() const {
 
 int Game::getLevel() const {
     return level;
+}
+
+void Game::setNoRandomFile(std::string noRandomFile) {
+    this->noRandomFile = noRandomFile;
+    setLevel(levelPtr);  
 }
 
 Block* Game::getNextBlock() {
@@ -63,7 +75,21 @@ void Game::shiftBlock(int y, int x, int nIterations) {
             setDefCellState();
             currBlock->updateBlock(y, x);
             b.updateBoard(currBlock);
+            if( currBlock->getBLevel() >= 3 ) {
+                if( isShiftable(1, 0) ) {
+                    setDefCellState();
+                    currBlock->updateBlock(1, 0);
+                    b.updateBoard(currBlock);
+                }
+            }
         } else {
+            if( currBlock->getBLevel() >= 3 ) {
+                if( isShiftable(1, 0) ) {
+                    setDefCellState();
+                    currBlock->updateBlock(1, 0);
+                    b.updateBoard(currBlock);
+                }
+            }
             break;
         }
         --nIterations;
@@ -71,17 +97,29 @@ void Game::shiftBlock(int y, int x, int nIterations) {
 }
 
 void Game::setLevel(std::unique_ptr<Level>& levelPtr) {
-    if( level == 0 ) {
+    if( level <= 0 ) {
         levelPtr = std::make_unique<LevZer>(file);
     } else if( level == 1 ) {
-        //levelPtr = std::make_unique<LevZer>(file);
+        levelPtr = std::make_unique<LevOne>();
     } else if( level == 2 ) {
-        //levelPtr = std::make_unique<LevZer>(file);
+        levelPtr = std::make_unique<LevTwo>();
     } else if( level == 3 ) {
-        //levelPtr = std::make_unique<LevZer>(file);
-    } else if( level == 4 ) {
-        //levelPtr = std::make_unique<LevZer>(file);
+        levelPtr = std::make_unique<LevThree>(noRandomFile);
+    } else if( level >= 4 ) {
+        levelPtr = std::make_unique<LevFour>(noRandomFile);
     }  
+}
+
+void Game::changePlayerLevel(int levCntr, int nIterations) {
+    while( nIterations > 0 ) {
+        if( (levCntr + level >= 0) && (levCntr + level <= 4) ) {
+            level += levCntr;
+        } else {
+            break;
+        }
+        --nIterations;
+    }
+    setLevel(levelPtr);
 }
 
 void Game::genBlock(std::unique_ptr<Block>& blockPtr, bool isNext) {
@@ -189,10 +227,10 @@ void Game::deleteRow(int bottomRow) {
             auto iterTopRow = b.getBoard().begin();
             b.getBoard().insert( iterTopRow, defaultRow );
             ++numRowsCleared;
+            score->calcRowScore(level, numRowsCleared);
         }
         --i;
     }
-    score->calcRowScore(level, numRowsCleared);
 }
 
 void Game::rotateBlock(int times) {

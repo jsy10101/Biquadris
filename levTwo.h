@@ -2,15 +2,10 @@
 #define __LEVTWO_H__
 
 #include "level.h"
-#include <string>
-#include <vector>
 
 class LevTwo : public Level {
-    std::vector<char> blockTypeList;
-    std::string file;
-    int pos;
     public:
-        LevTwo(std::string file);
+        LevTwo();
         char blockCreate() override;
 };
 

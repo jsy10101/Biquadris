@@ -8,7 +8,13 @@ View::View() :
     {}
 
 void View::textDisplay(Game& player1, Game& player2) {
-    std::cout << "L e v e l:" << std::setw(7) << player1.getLevel() << std::setw(20)
+    std::cout << "************************************************" << std::endl;
+    std::cout << "************** H I G H   S C O R E *************" << std::endl;
+    std::cout << "**************        " << std::setfill('0') << std::setw(3) 
+        << player1.getHighScore() <<  "          *************" << std::endl;
+    std::cout << "************************************************" << std::endl;
+
+    std::cout << "L e v e l:" << std::setfill(' ') << std::setw(7) << player1.getLevel() << std::setw(20)
         << "L e v e l:" << std::setw(7) << player2.getLevel() << std::endl;
 
     std::cout << "S c o r e:" << std::setw(7) << player1.getPlayerScore() << std::setw(20)
