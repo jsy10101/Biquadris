@@ -75,7 +75,21 @@ void Game::shiftBlock(int y, int x, int nIterations) {
             setDefCellState();
             currBlock->updateBlock(y, x);
             b.updateBoard(currBlock);
+            if( currBlock->getBLevel() >= 3 ) {
+                if( isShiftable(1, 0) ) {
+                    setDefCellState();
+                    currBlock->updateBlock(1, 0);
+                    b.updateBoard(currBlock);
+                }
+            }
         } else {
+            if( currBlock->getBLevel() >= 3 ) {
+                if( isShiftable(1, 0) ) {
+                    setDefCellState();
+                    currBlock->updateBlock(1, 0);
+                    b.updateBoard(currBlock);
+                }
+            }
             break;
         }
         --nIterations;
