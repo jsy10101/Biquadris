@@ -40,7 +40,7 @@ char LevThree::blockCreate() {
         }
         return retval;
     } else {
-        pos = (pos == blockTypeList.size()) ? 0 : pos;
+        pos = (pos >= blockTypeList.size()) ? 0 : pos;
         ++pos;
         return blockTypeList[pos - 1];
     }

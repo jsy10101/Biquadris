@@ -7,18 +7,7 @@
 #include "board.h"
 #include "score.h"
 #include "block.h"
-#include "iblock.h"
-#include "jblock.h"
-#include "lblock.h"
-#include "oblock.h"
-#include "sblock.h"
-#include "tblock.h"
-#include "zblock.h"
-#include "levZer.h"
-#include "levOne.h"
-#include "levTwo.h"
-#include "levThree.h"
-#include "levFour.h"
+#include "level.h"
 
 class Game {
     int level;
@@ -39,6 +28,7 @@ class Game {
         int getPlayerScore() const;
         int getHighScore() const;
         int getLevel() const;
+        bool getIsGameFinished() const;
         void setNoRandomFile(std::string noRandomFile);
         Block* getNextBlock();
         void setDefCellState();
@@ -51,6 +41,7 @@ class Game {
         void changeCurrBlock(std::string bType);
         void deleteRow(int bottomRow);
         void rotateBlock(int times);
+        void reset();
 };
 
 #endif

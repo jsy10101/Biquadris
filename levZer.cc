@@ -6,7 +6,7 @@ LevZer::LevZer(std::string file) :
     {}
 
 char LevZer::blockCreate() {
-    pos = (pos == blockTypeList.size()) ? 0 : pos;
+    pos = (pos >= blockTypeList.size()) ? 0 : pos;
     ++pos;
     return blockTypeList[pos - 1];
 }

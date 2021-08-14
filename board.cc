@@ -39,6 +39,14 @@ void Board::updateBoard(std::unique_ptr<Block>& blockPtr) {
     }
 }
 
+void Board::resetBoard() {
+    for(int i = 0; i < row; ++i) {
+        for(int j = 0; j < col; ++j) {
+            board.at(i).at(j).setDefault();
+        }
+    }
+}
+
 // Delete later, no longer needed
 std::ostream& operator<<(std::ostream& out, const Board& b) {
     for(int i = 0; i < b.row; ++i) {
