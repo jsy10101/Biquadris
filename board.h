@@ -17,6 +17,7 @@ class Board {
         int getCol() const;
         std::vector<std::vector<Cell>>& getBoard();
         void updateBoard(std::unique_ptr<Block>& blockPtr);
+        void resetBoard();
         friend std::ostream& operator<<(std::ostream& out, const Board& b);
 };
 

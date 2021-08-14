@@ -1,7 +1,19 @@
 #include "game.h"
+#include "iblock.h"
+#include "jblock.h"
+#include "lblock.h"
+#include "oblock.h"
+#include "sblock.h"
+#include "tblock.h"
+#include "zblock.h"
+#include "levZer.h"
+#include "levOne.h"
+#include "levTwo.h"
+#include "levThree.h"
+#include "levFour.h"
 
 Game::Game(std::string file, int level) :
-    level{level}, id{-1}, b{Board()}, file{file},
+    level{level}, id{-1}, isGameFinished{false}, b{Board()}, file{file},
     noRandomFile{""}, currBlock{nullptr}, nextBlock{nullptr}, 
     levelPtr{nullptr} {
         if( level <= 0 ) {
@@ -31,6 +43,10 @@ int Game::getHighScore() const {
 
 int Game::getLevel() const {
     return level;
+}
+
+bool Game::getIsGameFinished() const {
+    return isGameFinished;
 }
 
 void Game::setNoRandomFile(std::string noRandomFile) {
@@ -149,6 +165,15 @@ void Game::genBlock(std::unique_ptr<Block>& blockPtr, bool isNext) {
         }
     }
     if( !isNext ) {
+        for(int i = 0; i < currBlock->getBlock().size(); ++i) {
+            if( b.getBoard().at( currBlock->getBlock().at(i).getY() )
+                            .at( currBlock->getBlock().at(i).getX() )
+                            .getCType() != '.' ) {
+                b.updateBoard(currBlock);
+                isGameFinished = true;
+                return;
+            }
+        }
         b.updateBoard(blockPtr);
     }
 }
@@ -157,7 +182,7 @@ void Game::dropBlock(int nIterations) {
     const int defaultDropRows = 15 - 1;
     while( nIterations > 0 ) {
         shiftBlock(1, 0, defaultDropRows);
-        int bottomRow = 2;
+        int bottomRow = 0;
         for(int i = 0; i < currBlock->getBlock().size(); ++i) {
             if( currBlock->getBlock().at(i).getY() > bottomRow ) {
                 bottomRow = currBlock->getBlock().at(i).getY();
@@ -355,4 +380,16 @@ void Game::rotateBlock(int times) {
         }
         b.updateBoard(currBlock);
     }
+}
+
+void Game::reset() {
+    b.resetBoard();
+    score->resetCurrScore();
+    currBlock = nullptr;
+    nextBlock = nullptr;
+    blockMap.clear();
+    id = -1;
+    isGameFinished = false;
+    genBlock(currBlock, false);
+    genBlock(nextBlock, true);
 }
